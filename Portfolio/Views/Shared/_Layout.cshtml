@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] -Kimon Togrou, Portfolio</title>
+    <meta name="keywords" content="Kimon, Togrou, Webdesign, Software development, Game development, Portfolio, CV" />
+    <meta name="description" content="A Portfolio/CV by Kimon Togrou" />
+    <meta name="designer" content="Kimon Togrou" />
+    <meta name="author" content="Kimon Togrou" />
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <h1>Kimon Togrou, Portfolio</h1>
+            <a href="#"><img src="~/images/me.jpg" alt="image of me" /></a>
+            <a href="#">Kimon Togrou</a>
+        </header>
+
+        <partial name="_CookieConsentPartial" />
+
+        <div id="main">
+            <aside>
+                <article class="news-item">
+                    <a href="#"><h3>News item header</h3></a>
+                    <p>about the news item</p>
+                    <a href="#">Read more...</a>
+                </article>
+            </aside>
+            
+            <section>
+                <nav class="nav-wrap">
+                    <ul class="group" id="menu">
+                        <li><a class="active" asp-area="" asp-controller="Home" asp-action="Index">About</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Skills">Skills</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Projects">Projects</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <div id="menuborder">
+
+                </div>
+                <section class="content">
+                    <h2>@ViewData["Title"]:</h2>
+                    @RenderBody()
+                </section>
+                
+            </section>
+
+        </div>
+        <!--Footer info-->
+        <footer>
+            <p>Copyright</p>
+        </footer>
+    </div>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script type="text/javascript" src="~/js/MagicLine.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
