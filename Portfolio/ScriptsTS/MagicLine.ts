@@ -1,12 +1,4 @@
-﻿let menu: HTMLElement;
-let ml: MagicLine;
-
-window.onload = () => {
-    menu = document.getElementById("menu");
-    ml = new MagicLine(menu);
-}
-
-class MagicLine {
+﻿class MagicLine {
     // UL (menu) //
     public element : HTMLElement;
 
@@ -17,9 +9,9 @@ class MagicLine {
     public active : HTMLLIElement;
 
     // Url search variables //
-    //public url : string = window.location.search;
-    //public urlSplit : Array<string> = this.url.split('/', 2);
-    //public urlAction : string = this.urlSplit[1];
+    public url : string = window.location.href;
+    public urlSplit : Array<string> = this.url.split('Home/', 2);
+    public urlAction : string = this.urlSplit[1];
 
     constructor(element : HTMLElement) {
         this.element = element;
@@ -28,19 +20,30 @@ class MagicLine {
         this.magicLine.id = "magic-line";
         this.element.appendChild(this.magicLine);
     }
-
-    public MoveOnHover(listElement : HTMLLIElement) {
+    //public MoveOnHover(listElement: HTMLLIElement) {}
+    public MoveOnHover() {
 
     }
 
-    public MoveActive() {
+    public SetActive() {
     }
 }
 
+let menu: HTMLElement;
+let ml: MagicLine;
 
+window.onload = () => {
+    menu = document.getElementById("menu");
+    ml = new MagicLine(menu);
+}
 
+let menuListElements: NodeListOf<Element> = document.getElementsByClassName("magicLine");
 
+let magicline = document.getElementById("magic-line");
 
+for (let i in menu.childNodes) {
+    
+}
 
 //const el: HTMLElement = document.getElementById("menu");
 //let ML: MagicLine = new MagicLine(el);
