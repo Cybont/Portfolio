@@ -11,7 +11,10 @@ var MagicLine = /** @class */ (function () {
         this.element.appendChild(this.magicLine);
     }
     //public MoveOnHover(listElement: HTMLLIElement) {}
-    MagicLine.prototype.MoveOnHover = function () {
+    MagicLine.prototype.MoveOnHover = function (el) {
+        this.element.style.width = el.style.width;
+        this.element.style.left = el.style.left;
+        return;
     };
     MagicLine.prototype.SetActive = function () {
     };
@@ -23,10 +26,11 @@ window.onload = function () {
     menu = document.getElementById("menu");
     ml = new MagicLine(menu);
 };
-var menuListElements = document.getElementsByClassName("magicLine");
+//let menuListElements: NodeListOf<Element> = document.getElementsByClassName("magicLine");
 var magicline = document.getElementById("magic-line");
-for (var i in menu.childNodes) {
-}
+//magicline.style.width = ml.active.style.width;
+//magicline.style.left = ml.active.style.left;
+(menu.querySelector("a").onmouseover(ml.MoveOnHover(this)));
 //const el: HTMLElement = document.getElementById("menu");
 //let ML: MagicLine = new MagicLine(el);
 //var lel, leftPos, newWidth;

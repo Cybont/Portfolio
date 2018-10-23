@@ -21,8 +21,10 @@
         this.element.appendChild(this.magicLine);
     }
     //public MoveOnHover(listElement: HTMLLIElement) {}
-    public MoveOnHover() {
-
+    public MoveOnHover(el : HTMLElement): MouseEvent {
+        this.element.style.width = el.style.width;
+        this.element.style.left = el.style.left;
+        return 
     }
 
     public SetActive() {
@@ -37,13 +39,21 @@ window.onload = () => {
     ml = new MagicLine(menu);
 }
 
-let menuListElements: NodeListOf<Element> = document.getElementsByClassName("magicLine");
+//let menuListElements: NodeListOf<Element> = document.getElementsByClassName("magicLine");
 
 let magicline = document.getElementById("magic-line");
+//magicline.style.width = ml.active.style.width;
+//magicline.style.left = ml.active.style.left;
 
-for (let i in menu.childNodes) {
-    
-}
+(menu.querySelector("a").onmouseover(ml.MoveOnHover(this)));
+
+
+
+
+
+
+
+
 
 //const el: HTMLElement = document.getElementById("menu");
 //let ML: MagicLine = new MagicLine(el);
