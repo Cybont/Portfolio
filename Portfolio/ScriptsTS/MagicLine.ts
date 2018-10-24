@@ -1,6 +1,6 @@
 ﻿class MagicLine {
     // UL (menu) //
-    public element : HTMLElement;
+    public menu : HTMLElement;
 
     // Magic line LI //
     public magicLine : HTMLElement;
@@ -13,21 +13,22 @@
     public urlSplit : Array<string> = this.url.split('Home/', 2);
     public urlAction : string = this.urlSplit[1];
 
-    constructor(element : HTMLElement) {
-        this.element = element;
+    constructor(el : HTMLElement) {
+        this.menu = el;
         this.active = <HTMLLIElement> document.getElementsByClassName("active").item(0);
         this.magicLine = document.createElement("LI");
         this.magicLine.id = "magic-line";
-        this.element.appendChild(this.magicLine);
+        this.menu.appendChild(this.magicLine);
     }
     //public MoveOnHover(listElement: HTMLLIElement) {}
-    public MoveOnHover(el : HTMLElement): MouseEvent {
-        this.element.style.width = el.style.width;
-        this.element.style.left = el.style.left;
-        return 
+    public MoveOnHover(el: HTMLElement): MouseEvent {
+        this.magicLine.style.width = el.style.width;
+        this.magicLine.style.left = el.style.left;
+        return;
     }
 
-    public SetActive() {
+    public SetActive(el: HTMLElement) {
+        el.className += ", active";
     }
 }
 

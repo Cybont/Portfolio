@@ -1,22 +1,23 @@
 var MagicLine = /** @class */ (function () {
-    function MagicLine(element) {
+    function MagicLine(el) {
         // Url search variables //
         this.url = window.location.href;
         this.urlSplit = this.url.split('Home/', 2);
         this.urlAction = this.urlSplit[1];
-        this.element = element;
+        this.menu = el;
         this.active = document.getElementsByClassName("active").item(0);
         this.magicLine = document.createElement("LI");
         this.magicLine.id = "magic-line";
-        this.element.appendChild(this.magicLine);
+        this.menu.appendChild(this.magicLine);
     }
     //public MoveOnHover(listElement: HTMLLIElement) {}
     MagicLine.prototype.MoveOnHover = function (el) {
-        this.element.style.width = el.style.width;
-        this.element.style.left = el.style.left;
+        this.magicLine.style.width = el.style.width;
+        this.magicLine.style.left = el.style.left;
         return;
     };
-    MagicLine.prototype.SetActive = function () {
+    MagicLine.prototype.SetActive = function (el) {
+        el.className += ", active";
     };
     return MagicLine;
 }());
