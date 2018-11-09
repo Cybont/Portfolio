@@ -27,11 +27,12 @@ window.onload = function () {
     menu = document.getElementById("menu");
     ml = new MagicLine(menu);
 };
-//let menuListElements: NodeListOf<Element> = document.getElementsByClassName("magicLine");
 var magicline = document.getElementById("magic-line");
-//magicline.style.width = ml.active.style.width;
-//magicline.style.left = ml.active.style.left;
-(menu.querySelector("a").onmouseover(ml.MoveOnHover(this)));
+//function moveMagicLine(a: HTMLLinkElement): MouseEvent  {
+//    magicline.style.left = a.style.left;
+//    magicline.style.width = a.style.width;
+//    return this;
+//}
 //const el: HTMLElement = document.getElementById("menu");
 //let ML: MagicLine = new MagicLine(el);
 //var lel, leftPos, newWidth;
