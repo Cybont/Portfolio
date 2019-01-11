@@ -15,11 +15,11 @@ class MagicLine {
             var $lel, $leftPos, $newWidth;
             menu.appendChild(ml);
             var $magicLine = $("#magic-line");
-            var $OriginL = $('[' + action + ']').position().left + "px";
+            var OriginL = $('[' + action + ']').position().left + "px";
             $magicLine
                 .width($('[' + action + ']').width())
                 .css("left", $('[' + action + ']').position().left)
-                .data("origLeft", $OriginL)
+                .data("origLeft", OriginL)
                 .data("origWidth", $magicLine.width());
             $("#menu li").find("a").hover(function () {
                 $lel = $(this);
@@ -37,6 +37,7 @@ class MagicLine {
             });
         });
     }
+    // Adds css class (.active) to the a tag representing the current page
     SetActive(action) {
         jQuery(function ($) {
             $('[' + action + ']').addClass('active');
