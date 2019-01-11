@@ -1,31 +1,30 @@
-﻿import $ from 'jquery';
+﻿import $ from "jquery";
 class MagicLine {
     // UL (menu) //
     public menu : HTMLUListElement;
 
     // Magic line LI //
-    public magicLine : HTMLElement;
-
-    // LI Active //
-    public active : HTMLLIElement;
+    public magicLine : HTMLLIElement;
 
     // Url search variables //
     public url : string = window.location.href;
     public urlSplit : Array<string> = this.url.split('Home/', 2);
     public urlAction : string = this.urlSplit[1];
 
+    // Pre appended MagicLine
     constructor(el : HTMLUListElement) {
         this.menu = el;
-        this.active = <HTMLLIElement> document.getElementsByClassName("active").item(0);
-        this.magicLine = document.createElement("LI");
+        this.magicLine = document.createElement("LI") as HTMLLIElement;
         this.magicLine.id = "magic-line";
-        this.menu.appendChild(this.magicLine);
     }
-    //public MoveOnHover(listElement: HTMLLIElement) {}
-    public MoveOnHover(action : string) {
+
+    // Append magicLine and do animation from active element to the "hover" object
+    public MoveOnHover(action : string, menu : HTMLUListElement, ml: HTMLLIElement) {
             jQuery(function( $ ){
                 var $lel, $leftPos, $newWidth;
-            
+
+                menu.appendChild(ml);
+
                 var $magicLine = $("#magic-line");
             
                 var $OriginL = $('['+ action +']').position().left+"px";
@@ -55,32 +54,30 @@ class MagicLine {
             });
     }
 
-    // ?? Find a way to integrate window load here somehow to complete object oriented methodology
-    public SetActive(el: HTMLElement) {
-        el.className += ", active";
+    public SetActive(action : string) {
+        jQuery(function( $ ){
+            $('['+ action +']').addClass('active');
+        });
     }
 }
 
 let menu: HTMLUListElement = document.getElementById("menu") as HTMLUListElement;
-let ml : MagicLine = new MagicLine(menu);
+let ml: MagicLine = new MagicLine(menu);
 
-let magicline = document.getElementById("magic-line") as HTMLLIElement;
+// ?? Performance could maybe be a litte tighter somehow
+let jQueryStr: string;
 
-// Fix performance, prop loading twice when clicking on something other than homepage(Index) because of the fact that for a brief moment "ml.urlAction" is null
+if (ml.urlAction !== null) {
+    jQueryStr = 'href="/Home/' + ml.urlAction + '"';
+    ml.SetActive(jQueryStr);
+}
 
 if (!ml.urlAction) {
-    ml.MoveOnHover('href="/"');
-}
-else {
-    ml.MoveOnHover('href="/Home/' + ml.urlAction +'"');
+    jQueryStr = 'href="/"';
+    ml.SetActive(jQueryStr);
 }
 
-// ?? TS doesn't understand the "?" identifier here for some reason, look above for inspiration
+ml.MoveOnHover(jQueryStr, ml.menu, ml.magicLine);
 
-// $(document).ready(function() {
-//     if (ml.urlAction != null) {
-//         $("[href='Home/" + ml.urlAction  + "']").addClass('active');
-//     }
-// });
 
 

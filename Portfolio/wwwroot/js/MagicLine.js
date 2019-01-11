@@ -1,20 +1,19 @@
-import $ from 'jquery';
 class MagicLine {
+    // Pre appended MagicLine
     constructor(el) {
         // Url search variables //
         this.url = window.location.href;
         this.urlSplit = this.url.split('Home/', 2);
         this.urlAction = this.urlSplit[1];
         this.menu = el;
-        this.active = document.getElementsByClassName("active").item(0);
         this.magicLine = document.createElement("LI");
         this.magicLine.id = "magic-line";
-        this.menu.appendChild(this.magicLine);
     }
-    //public MoveOnHover(listElement: HTMLLIElement) {}
-    MoveOnHover(action) {
+    // Append magicLine and do animation from active element to the "hover" object
+    MoveOnHover(action, menu, ml) {
         jQuery(function ($) {
             var $lel, $leftPos, $newWidth;
+            menu.appendChild(ml);
             var $magicLine = $("#magic-line");
             var $OriginL = $('[' + action + ']').position().left + "px";
             $magicLine
@@ -38,23 +37,23 @@ class MagicLine {
             });
         });
     }
-    SetActive(el) {
-        el.className += ", active";
+    SetActive(action) {
+        jQuery(function ($) {
+            $('[' + action + ']').addClass('active');
+        });
     }
 }
 let menu = document.getElementById("menu");
 let ml = new MagicLine(menu);
-let magicline = document.getElementById("magic-line");
-// Fix performance, prop loading twice when clicking on something other than homepage(Index) because of the fact that for a brief moment "ml.urlAction" is null
+// ?? Performance could maybe be a litte tighter somehow
+let jQueryStr;
+if (ml.urlAction !== null) {
+    jQueryStr = 'href="/Home/' + ml.urlAction + '"';
+    ml.SetActive(jQueryStr);
+}
 if (!ml.urlAction) {
-    ml.MoveOnHover('href="/"');
+    jQueryStr = 'href="/"';
+    ml.SetActive(jQueryStr);
 }
-else {
-    ml.MoveOnHover('href="/Home/' + ml.urlAction + '"');
-}
-$(document).ready(function () {
-    if (ml.urlAction != null) {
-        $("[href='Home/" + ml.urlAction + "']").addClass('active');
-    }
-});
+ml.MoveOnHover(jQueryStr, ml.menu, ml.magicLine);
 //# sourceMappingURL=MagicLine.js.map
