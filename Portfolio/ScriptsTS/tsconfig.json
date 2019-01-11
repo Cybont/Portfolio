@@ -4,8 +4,11 @@
     "noEmitOnError": true,
     "removeComments": false,
     "sourceMap": true,
-    "target": "es5",
-    "outDir": "../wwwroot/js"
+    "target": "es6",
+    "outDir": "../wwwroot/js",
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true
+    //"strict": true
       //,"watch": true 
   },
 

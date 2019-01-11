@@ -19,6 +19,7 @@ namespace Portfolio
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseUrls("http://localhost:53829/Home/Index")
                 .UseStartup<Startup>();
     }
 }

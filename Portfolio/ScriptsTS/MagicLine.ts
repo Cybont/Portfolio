@@ -1,6 +1,7 @@
-﻿class MagicLine {
+﻿import $ from 'jquery';
+class MagicLine {
     // UL (menu) //
-    public menu : HTMLElement;
+    public menu : HTMLUListElement;
 
     // Magic line LI //
     public magicLine : HTMLElement;
@@ -13,7 +14,7 @@
     public urlSplit : Array<string> = this.url.split('Home/', 2);
     public urlAction : string = this.urlSplit[1];
 
-    constructor(el : HTMLElement) {
+    constructor(el : HTMLUListElement) {
         this.menu = el;
         this.active = <HTMLLIElement> document.getElementsByClassName("active").item(0);
         this.magicLine = document.createElement("LI");
@@ -21,72 +22,65 @@
         this.menu.appendChild(this.magicLine);
     }
     //public MoveOnHover(listElement: HTMLLIElement) {}
-    public MoveOnHover(el: HTMLLinkElement): MouseEvent {
-        this.magicLine.style.width = el.style.width;
-        this.magicLine.style.left = el.style.left;
-        return;
+    public MoveOnHover(action : string) {
+            jQuery(function( $ ){
+                var $lel, $leftPos, $newWidth;
+            
+                var $magicLine = $("#magic-line");
+            
+                var $OriginL = $('['+ action +']').position().left+"px";
+            
+                $magicLine
+                    .width($('['+ action + ']').width())
+                    .css("left", $('['+ action + ']').position().left)
+                    .data("origLeft", $OriginL)
+                    .data("origWidth", $magicLine.width());
+            
+                $("#menu li").find("a").hover(function () {
+                    $lel = $(this);
+                    $leftPos = $lel.position().left;
+                    $newWidth = $lel.parent().width();
+            
+                    $magicLine.stop().animate({
+                        left: $leftPos,
+                        width: $newWidth
+                    });
+                },
+                function () {
+                    $magicLine.stop().animate({
+                        left: $magicLine.data("origLeft"),
+                        width: $magicLine.data("origWidth")
+                    });
+                });
+            });
     }
 
+    // ?? Find a way to integrate window load here somehow to complete object oriented methodology
     public SetActive(el: HTMLElement) {
         el.className += ", active";
     }
 }
 
-let menu: HTMLElement;
-let ml: MagicLine;
+let menu: HTMLUListElement = document.getElementById("menu") as HTMLUListElement;
+let ml : MagicLine = new MagicLine(menu);
 
-window.onload = () => {
-    menu = document.getElementById("menu");
-    ml = new MagicLine(menu);
+let magicline = document.getElementById("magic-line") as HTMLLIElement;
+
+// Fix performance, prop loading twice when clicking on something other than homepage(Index) because of the fact that for a brief moment "ml.urlAction" is null
+
+if (!ml.urlAction) {
+    ml.MoveOnHover('href="/"');
+}
+else {
+    ml.MoveOnHover('href="/Home/' + ml.urlAction +'"');
 }
 
-let magicline = document.getElementById("magic-line");
+// ?? TS doesn't understand the "?" identifier here for some reason, look above for inspiration
 
-//function moveMagicLine(a: HTMLLinkElement): MouseEvent  {
-//    magicline.style.left = a.style.left;
-//    magicline.style.width = a.style.width;
-//    return this;
-//}
-
-
+// $(document).ready(function() {
+//     if (ml.urlAction != null) {
+//         $("[href='Home/" + ml.urlAction  + "']").addClass('active');
+//     }
+// });
 
 
-//const el: HTMLElement = document.getElementById("menu");
-//let ML: MagicLine = new MagicLine(el);
-     //var lel, leftPos, newWidth;
-        //Makes a new li with magic line css style
-        //("#menu").appendChild("<li id='magic-line'></li>");
-
-        //var magicLine = ("#magic-line");
-
-        //Getting rid of !$page error on home/default site
-        //if (!$page) {
-        //    $page = "work-gallery";
-        //}
-
-    //    var OriginL = ("[href='?page=" + page + "']").position().left + "px";
-
-    //    magicLine
-    //        .width(("[href='?page=" + page + "']").width())
-    //        .css("left", ("[href='?page=" + page + "']").position().left)
-    //        .data("origLeft", OriginL)
-    //        .data("origWidth", magicLine.width());
-
-    //    ("#menu li").find("a").hover(function () {
-    //        lel = (this);
-    //        leftPos = lel.position().left;
-    //        newWidth = lel.parent().width();
-
-    //        magicLine.stop().animate({
-    //            left: leftPos,
-    //            width: newWidth
-    //        });
-    //    },
-    //        function () {
-    //            magicLine.stop().animate({
-    //                left: magicLine.data("origLeft"),
-    //                width: magicLine.data("origWidth")
-    //            });
-    //        });
-
-    //});
