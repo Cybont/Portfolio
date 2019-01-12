@@ -30,12 +30,12 @@ class MagicLine {
                 var $magicLine = $("#magic-line");
             
                 var OriginL = $('['+ action +']').position().left+"px";
-            
+
                 $magicLine
                     .width($('['+ action + ']').width())
-                    .css("left", $('['+ action + ']').position().left)
-                    .data("origLeft", OriginL)
-                    .data("origWidth", $magicLine.width());
+                    .css("left", $('['+ action + ']').position().left);
+                    //.data("origLeft", OriginL)
+                    //.data("origWidth", $magicLine.width());
             
                 $("#menu li").find("a").hover(function () {
                     $lel = $(this);
@@ -49,10 +49,12 @@ class MagicLine {
                 },
                 function () {
                     $magicLine.stop().animate({
-                        left: $magicLine.data("origLeft"),
-                        width: $magicLine.data("origWidth")
+                        //left: $magicLine.data("origLeft"),
+                        //width: $magicLine.data("origWidth")
+                        left: $('[class="magicLine active"]').position().left,
+                        width: $('[class="magicLine active"]').width()
                     });
-                });
+                });                
             });
     }
 
@@ -60,6 +62,19 @@ class MagicLine {
     public SetActive(action : string) {
         jQuery(function( $ ){
             $('['+ action +']').addClass('active');
+        });
+    }
+
+    // On resize find current left and 
+    public OnResize() {
+        jQuery(function( $ ){
+            $(window).resize(function(){
+                var $magicLine = $("#magic-line");
+        
+                $magicLine
+                .width($('['+ jQueryStr + ']').width())
+                .css("left", $('['+ jQueryStr + ']').position().left);
+              });
         });
     }
 }
@@ -82,5 +97,6 @@ if (!ml.urlAction) {
 
 ml.MoveOnHover(jQueryStr, ml.menu, ml.magicLine);
 
+ml.OnResize()
 
 
