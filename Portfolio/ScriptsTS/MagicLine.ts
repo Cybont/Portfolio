@@ -82,7 +82,6 @@ class MagicLine {
 let menu: HTMLUListElement = document.getElementById("menu") as HTMLUListElement;
 let ml: MagicLine = new MagicLine(menu);
 
-// ?? Performance could maybe be a litte tighter somehow
 let jQueryStr: string;
 
 if (ml.urlAction !== null) {
