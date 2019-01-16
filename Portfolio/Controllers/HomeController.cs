@@ -17,8 +17,6 @@ namespace Portfolio.Controllers
 
         public IActionResult Skills()
         {
-            ViewData["Message"] = "Your application description page.";
-
             return View();
         }
         public IActionResult Projects()
@@ -28,8 +26,6 @@ namespace Portfolio.Controllers
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
-
             return View();
         }
 

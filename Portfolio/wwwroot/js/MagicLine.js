@@ -59,7 +59,6 @@ class MagicLine {
 }
 let menu = document.getElementById("menu");
 let ml = new MagicLine(menu);
-// ?? Performance could maybe be a litte tighter somehow
 let jQueryStr;
 if (ml.urlAction !== null) {
     jQueryStr = 'href="/Home/' + ml.urlAction + '"';
