@@ -171,7 +171,7 @@ aside {
     box-shadow: inset 0 0 20px #000;
 }
 
-    .news-item {
+    /*.news-item {
         width: 100%;
         float: left;
         display: none;
@@ -179,7 +179,7 @@ aside {
 
     .news-item p, .news-item a, .news-item h3 {
         margin-bottom: 5px;
-    }
+    }*/
 
 footer {
     width: 100%;
