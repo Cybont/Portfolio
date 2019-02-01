@@ -36,11 +36,11 @@ header {
 }
 
     header img {
-        height : 70px;
+        height: 70px;
         float: left;
         border-radius: 100px;
         box-shadow: inset 0 0 10px #000;
-        margin: 15px 20px 0 20px;
+        margin: 10px 15px 0 5px;
     }
 
     header a:nth-child(3) {
@@ -126,14 +126,14 @@ nav {
 
 #main {
     width: 100%;
-    min-height: 1015px;
+    min-height: 1000px;
     float: left;
 }
 
 
     #main > section {
         width: 80%;
-        min-height: 1015px;
+        min-height: 1000px;
         float: left;
         box-shadow: inset 0 0 15px #000;
     }
@@ -146,13 +146,24 @@ nav {
         width: 70%;
         margin-left: 15%;
         margin-top: 5%;
-        padding : 2%;
+        padding : 1.5% 2% 2% 2%;
         border-radius : 10px;
+        overflow-y: scroll;
     }
+
+        .content ul {
+            margin-left: 30px;
+            text-shadow: 0 0 10px #000;
+        }
+
+        .content h3, .content h4 {
+            text-shadow: 0 0 10px #000;
+        }
+
 
     h2 {
         text-shadow: 0 0 10px #000;
-        margin : 0;
+        margin : 0 !important;
     }
 
     article p { 
@@ -162,12 +173,29 @@ nav {
 
 aside {
     width: calc(20% - 20px);
-    min-height: calc(1015px - 20px);
+    min-height: calc(1015px - 15px);
     float: left;
     padding: 10px;
     background-color: #373636;
     box-shadow: inset 0 0 20px #000;
 }
+
+    aside article { 
+        height: calc(150px - 5px);
+        width: 100%;
+        float: left;
+        text-align: center;
+    }
+
+    aside h2 { 
+        margin-top: 50px;
+    }
+
+    #twitter-container {
+        width: 100%;
+        height: auto;
+        float: left;
+    }
 
     /*.news-item {
         width: 100%;
@@ -185,9 +213,16 @@ footer {
     float: left;
     background-color: #1e1e1e;
     border-radius: 2px 2px 0 0;
+    text-align: center;
 }
 
+    footer p { 
+        margin: 40px 0 0 0;
+    }
+
 /*Browser specific*/
+
+/*Chrome*/
 ::-webkit-scrollbar {
     width: 12px;
 }
@@ -204,4 +239,8 @@ footer {
     ::-webkit-scrollbar-thumb:hover {
         background-color: #217d9b;
     }
+/*Edge*/
+-ms-overflow-style {
+    width: 12px;
+}
 /*Broser specific end*/

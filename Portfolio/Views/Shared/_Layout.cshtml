@@ -8,6 +8,7 @@
     <meta name="description" content="A Portfolio/CV by Kimon Togrou" />
     <meta name="designer" content="Kimon Togrou" />
     <meta name="author" content="Kimon Togrou" />
+    <link rel="stylesheet" href="~/css/site.css" />
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
@@ -22,18 +23,24 @@
 <body>
     <div id="wrapper">
         <header>
-            <a href="#"><img src="~/images/me.jpg" alt="image of me" /></a>
-            <a href="#"><h1>Kimon Togrou, Programmer</h1></a>
+            <img src="~/images/me.jpg" alt="image of me" />
+            <h1>Kimon Togrou, Programmer</h1>
         </header>
 
-        <partial name="_CookieConsentPartial" />
+        @*<partial name="_CookieConsentPartial" />*@
 
         <div id="main">
             <aside>
-                <a class="twitter-timeline" data-theme="dark" data-link-color="#269bc2" href="https://twitter.com/KimonTogrou?ref_src=twsrc%5Etfw">Tweets by KimonTogrou</a>
-                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                <article>
+                    <h2>Live updates</h2>
+                </article>
+                <div id="twitter-container">
+                    <a class="twitter-timeline" data-theme="dark" data-link-color="#269bc2" href="https://twitter.com/KimonTogrou?ref_src=twsrc%5Etfw">Tweets by KimonTogrou</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+
             </aside>
-            
+
             <section>
                 <nav class="nav-wrap">
                     <ul class="group" id="menu">
@@ -51,16 +58,18 @@
                     <h2>@ViewData["Title"]:</h2>
                     @RenderBody()
                 </section>
-                
+
             </section>
 
         </div>
         <!--Footer info-->
         <footer>
-            <p>Copyright</p>
+            @*<p>&copy;Copyright</p>*@
+            <p>A Website by Kimon Togrou &copy;</p>
         </footer>
     </div>
-
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="~/js/MagicLine.js"></script>
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
